@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Theme Page </title>
+		<font color="gold">
+<marquee bgcolor="#06012A"><h2><b><i><div><span style="color:#ff0000;">W</span><span style="color:#ff0b00;">E</span><span style="color:#ff1500;">L</span><span style="color:#ff2000;">C</span><span style="color:#ff2a00;">O</span><span style="color:#ff3500;">M</span><span style="color:#ff4000;">E</span><span style="color:#ff4a00;"> </span><span style="color:#ff5500;">T</span><span style="color:#ff5f00;">O</span><span style="color:#ff6a00;"> </span><span style="color:#ff7400;">O</span><span style="color:#ff7f00;">F</span><span style="color:#ff8a00;">F</span><span style="color:#ff9400;">I</span><span style="color:#ff9f00;">C</span><span style="color:#ffaa00;">I</span><span style="color:#ffb400;">A</span><span style="color:#ffbf00;">L</span><span style="color:#ffca00;"> </span><span style="color:#ffd400;">P</span><span style="color:#ffdf00;">O</span><span style="color:#ffea00;">R</span><span style="color:#fff400;">T</span><span style="color:#ffff00;">F</span><span style="color:#e8ff00;">O</span><span style="color:#d1ff00;">L</span><span style="color:#b9ff00;">I</span><span style="color:#a2ff00;">O</span><span style="color:#8bff00;"> </span><span style="color:#74ff00;">O</span><span style="color:#5dff00;">F</span><span style="color:#46ff00;"> </span><span style="color:#2eff00;">P</span><span style="color:#17ff00;">R</span><span style="color:#00ff00;">A</span><span style="color:#00ff15;">N</span><span style="color:#00ff2b;">.</span><span style="color:#00ff40;"> </span><span style="color:#00ff55;">H</span><span style="color:#00ff6a;">E</span><span style="color:#00ff80;">R</span><span style="color:#00ff95;">E</span><span style="color:#00ffaa;"> </span><span style="color:#00ffbf;">Y</span><span style="color:#00ffd5;">O</span><span style="color:#00ffea;">U</span><span style="color:#00ffff;"> </span><span style="color:#00eaff;">C</span><span style="color:#00d5ff;">A</span><span style="color:#00bfff;">N</span><span style="color:#00aaff;"> </span><span style="color:#0095ff;">F</span><span style="color:#0080ff;">I</span><span style="color:#006aff;">N</span><span style="color:#0055ff;">D</span><span style="color:#0040ff;"> </span><span style="color:#002bff;">A</span><span style="color:#0015ff;">L</span><span style="color:#0000ff;">L</span><span style="color:#0c00ff;"> </span><span style="color:#1700ff;">T</span><span style="color:#2300ff;">H</span><span style="color:#2e00ff;">E</span><span style="color:#3a00ff;"> </span><span style="color:#4600ff;">I</span><span style="color:#5100ff;">M</span><span style="color:#5d00ff;">P</span><span style="color:#6800ff;">O</span><span style="color:#7400ff;">R</span><span style="color:#7f00ff;">T</span><span style="color:#8b00ff;">A</span><span style="color:#9600e8;">N</span><span style="color:#a000d1;">T</span><span style="color:#ab00b9;"> </span><span style="color:#b500a2;">L</span><span style="color:#c0008b;">I</span><span style="color:#ca0074;">N</span><span style="color:#d5005d;">K</span><span style="color:#df0046;">S</span><span style="color:#ea002e;"> </span><span style="color:#f40017;">Y</span><span style="color:#ff0000;">O</span><span style="color:#ff0b00;">U</span><span style="color:#ff1500;"> </span><span style="color:#ff2000;">N</span><span style="color:#ff2a00;">E</span><span style="color:#ff3500;">E</span><span style="color:#ff4000;">D</span><span style="color:#ff4a00;">!</span><span style="color:#ff5500;">!</span><span style="color:#ff5f00;">!</span><span style="color:#ff6a00;">.</span><span style="color:#ff7400;">.</span><span style="color:#ff7f00;">.</span></div><i></b></marquee></font></h2>
+
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+			<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">	
+					
+			<body oncontextmenu = "return false;">
+				 <style>
+  		#snowflakeContainer 
+		{
+    			position: absolute;
+    			left: 0px;
+    			top: 0px;
+    			display: none;
+  		}
+
+  		.snowflake 
+		{
+    			position: fixed;
+    			background-color: #0d4096;
+  			user-select: none;
+    			z-index: 1000;
+    			pointer-events: none;
+    			border-radius: 50%;
+    			width: 10px;
+    			height: 10px;
+  		}
+	    </style>
+
+	<div id="snowflakeContainer">
+  		<span class="snowflake"></span>
+	</div>
+
+	<script>
+ 		 var snowflakes = [];
+  		var browserWidth;
+ 		var browserHeight;
+		var numberOfSnowflakes = 25;
+		var resetPosition = false;
+		var enableAnimations = false;
+		var reduceMotionQuery = matchMedia("(prefers-reduced-motion)");
+
+  		function setAccessibilityState() 
+		{
+    			if (reduceMotionQuery.matches) 
+			{
+      				enableAnimations = false;
+    			} 
+			else 
+			{ 
+      				enableAnimations = true;
+    			}
+  		}
+  		setAccessibilityState();
+		reduceMotionQuery.addListener(setAccessibilityState);
+
+  
+  		function setup() 
+		{
+    			if (enableAnimations) 
+			{
+      				window.addEventListener("DOMContentLoaded", generateSnowflakes, false);
+      				window.addEventListener("resize", setResetFlag, false);
+    			}
+  		}
+  	setup();
+
+  
+  	function Snowflake(element, speed, xPos, yPos) 
+	{
+   
+    		 this.element = element;
+   		 this.speed = speed;
+   		 this.xPos = xPos;
+    		 this.yPos = yPos;
+    		 this.scale = 1;
+
+    		this.counter = 0;
+    		this.sign = Math.random() < 0.5 ? 1 : -1;
+
+    		this.element.style.opacity = (.1 + Math.random()) / 3;
+  	}
+
+ 
+  	Snowflake.prototype.update = function () 
+	{
+    		this.counter += this.speed / 5000;
+    		this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+    		this.yPos += Math.sin(this.counter) / 40 + this.speed / 30;
+    		this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
+		setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
+
+    		if (this.yPos > browserHeight) 
+		{
+      			this.yPos = -50;
+    		}
+  	}
+
+	function setTransform(xPos, yPos, scale, el) 
+	{
+    		el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) scale(${scale}, ${scale})`;
+  	}
+
+  
+  function generateSnowflakes() {
+
+   
+    var originalSnowflake = document.querySelector(".snowflake");
+
+    
+    var snowflakeContainer = originalSnowflake.parentNode;
+    snowflakeContainer.style.display = "block";
+
+    // get our browser's size
+    browserWidth = document.documentElement.clientWidth;
+    browserHeight = document.documentElement.clientHeight;
+
+    for (var i = 0; i < numberOfSnowflakes; i++) {
+
+      var snowflakeClone = originalSnowflake.cloneNode(true);
+      snowflakeContainer.appendChild(snowflakeClone);
+
+      var initialXPos = getPosition(50, browserWidth);
+      var initialYPos = getPosition(50, browserHeight);
+      var speed = 5 + Math.random() * 40;
+
+      var snowflakeObject = new Snowflake(snowflakeClone,
+        speed,
+        initialXPos,
+        initialYPos);
+      snowflakes.push(snowflakeObject);
+    }
+
+    snowflakeContainer.removeChild(originalSnowflake);
+
+    moveSnowflakes();
+  }
+
+  function moveSnowflakes() {
+
+    if (enableAnimations) 
+    {
+      for (var i = 0; i < snowflakes.length; i++) 
+	{
+        	var snowflake = snowflakes[i];
+        	snowflake.update();
+        }      
+    }
+
+    if (resetPosition) 
+      {
+      		browserWidth = document.documentElement.clientWidth;
+     		 browserHeight = document.documentElement.clientHeight;
+
+      		for (var i = 0; i < snowflakes.length; i++) 
+		{
+        		var snowflake = snowflakes[i];
+			snowflake.xPos = getPosition(50, browserWidth);
+        		snowflake.yPos = getPosition(50, browserHeight);
+      		}
+
+      resetPosition = false;
+    }
+
+    requestAnimationFrame(moveSnowflakes);
+  }
+
+
+  function getPosition(offset, size) {
+    return Math.round(-1 * offset + Math.random() * (size + 2 * offset));
+  }
+
+
+  function setResetFlag(e) 
+  {
+    resetPosition = true;
+  }
+		</script>
+
+			<header>
+				<section class = "navsection">
+					<div class = "logo">
+						<h1> Pranit Puri </h1>
+					</div>
+						<nav>
+							<a href = "#" class = "menu-button"> Home </a>
+							<a href = "#" class = "menu-button"> CV</a>
+							<a href = "#" class = "menu-button"> Gallery</a>
+							<a href = "https://phantomsmm.com/" class = "menu-button" target = "_blank">Projects</a>
+							<a href = "https://wa.me/+918851450837" class = "menu-button" target = "_blank"> Contact</a>
+						</nav>
+				</section>
+			<body>
+
+				</div>
+			<main>
+				<div class = "lefts">
+					<h3>Hello</h3>
+					<h1>I AM A CODER</h1>
+					<h4>Web Developer and SMM Agent</h4>
+					<a href = "#" class = "btn1"> Hire Me </a>
+					<a href = "https://wa.me/+918851450837" target = "_blank" class = "btn2"> Contact Me </a>
+				</div>
+
+				<div class = "rs">
+					<image src = "images/rshead.png">
+
+				</div>
+				
+			</main>
+
+			<footer>
+        <div class="footer-content">
+            <h3>Social Links</h3>
+            <p>Thanks for visiting our site. You can contact us from the links given below!!</p>
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/pranitpuri" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/pran_writes_" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UC2_1pVdaMyCnSsmgRNkC2Yw/videos" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="www.linkedin.com/in/pranit-puri" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy;2021 designed by <span>~Pran</span></p>
+        </div>
+    </footer>
+    </header>
+	</body>
+	</html>
+
